@@ -1025,7 +1025,7 @@ class Solution {
 }
 ```
 
-25. Count Frequent Elements
+# 25. Count Frequent Elements
 ```java
 class Solution {
 	public int countOccurence(int[] arr, int k) {
