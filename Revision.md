@@ -1025,7 +1025,7 @@ class Solution {
 }
 ```
 
-# Count Frequent Elements
+25. Count Frequent Elements
 ```java
 class Solution {
 	public int countOccurence(int[] arr, int k) {
@@ -1064,4 +1064,35 @@ class Solution {
 	}
 }
 
+```
+
+# 27.Array Subset
+```java
+class Solution {
+    public boolean isSubset(int a[], int b[]) {
+
+        if (b.length > a.length) return false;
+
+        // HashMap me har element ki frequency store karenge
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int num : a) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        // b ke har element ki frequency check karenge
+        for (int num : b) {
+
+            // agar element present nahi hai
+            // ya uski frequency 0 ho gayi hai
+            if (!map.containsKey(num) || map.get(num) == 0)
+                return false;
+
+            // ek occurrence use ho gayi
+            map.put(num, map.get(num) - 1);
+        }
+
+        return true;
+    }
+}
 ```
