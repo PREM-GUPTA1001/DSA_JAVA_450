@@ -1096,3 +1096,209 @@ class Solution {
     }
 }
 ```
+
+# 28. Triplet Sum in Array
+```java
+(GFG)
+class Solution {
+    public boolean hasTripletSum(int nums[], int target) {
+
+        // nums = [-1,0,1,2,-1,-4]
+        // target = 0
+
+        // TC --> O(n^2)
+        // Space --> O(1)
+
+        Arrays.sort(nums);
+
+        // nums = [-4,-1,-1,0,1,2]
+        // index    0  1  2 3 4 5
+
+
+        for (int i = 0; i < nums.length - 2; i++) {
+
+            // nums.length = 6
+            // i < 4
+            //
+            // i = 0
+            // i = 1
+            // i = 2
+            // i = 3
+
+            int l = i + 1;
+            int r = nums.length - 1;
+
+            // i = 0
+            // l = 1
+            // r = 5
+
+
+            while (l < r) {
+
+                int sum = nums[i] + nums[l] + nums[r];
+
+                // i = 0, l = 1, r = 5
+                // sum = -4 + -1 + 2
+                // sum = -3
+                // -3 < 0 --> l++
+
+                // l = 2
+
+
+                // i = 0, l = 2, r = 5
+                // sum = -4 + -1 + 2
+                // sum = -3
+                // -3 < 0 --> l++
+
+                // l = 3
+
+
+                // i = 0, l = 3, r = 5
+                // sum = -4 + 0 + 2
+                // sum = -2
+                // -2 < 0 --> l++
+
+                // l = 4
+
+
+                // i = 0, l = 4, r = 5
+                // sum = -4 + 1 + 2
+                // sum = -1
+                // -1 < 0 --> l++
+
+                // l = 5
+                // l < r false
+                // while end
+
+
+                // i = 1
+                // nums[i] = -1
+                // l = 2
+                // r = 5
+
+                // sum = -1 + -1 + 2
+                // sum = 0
+                // 0 == target
+                // triplet mil gaya
+                // [-1,-1,2]
+
+                if (sum < target) {
+                    l++;
+
+                    // sum chhota hai
+                    // isliye left ko aage badhayenge
+                }
+
+                else if (sum > target) {
+                    r--;
+
+                    // sum bada hai
+                    // isliye right ko peeche karenge
+                }
+
+                else {
+                    return true;
+
+                    // sum == target
+                    // valid triplet mil gaya
+                    // isliye direct true return karenge
+                }
+            }
+        }
+
+        return false;
+
+        // Agar poora array check karne ke baad
+        // koi triplet nahi mila
+        // to false return karenge
+    }
+}
+(LC)
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+// TC --> O(n^2)
+// space-->O(n)
+        List<List<Integer>> ans = new ArrayList<>();
+        // [-1, 0 , 1, 2, -1, -4]
+        Arrays.sort(nums);
+        // [-4, -1, -1, 0, 1, 2]
+        //  0    1   2   3  4  5
+
+        // [0, 0, 0]
+
+        // [1,2,0,1,0,0,0,0]-->
+        //  [0, 0, 0, 0, 0, 1, 1, 2]
+        //  0  1  2   3  4  5  6  7
+        for (int i = 0; i < nums.length - 2; i++) {
+// i --> 0 , i < nums.length - 2 --> i < 4; i++
+// i --> 1 , i < 4
+
+// i = 0 
+
+// i = 0 --> i < 6 -->
+// i = 1 --> i < 6 --> skip till 5
+// i = 5 --> i < 6 -->
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+
+            int l = i + 1, r = nums.length - 1;
+        // l = 1, r = 5 
+        // l = 2, r = 5
+        // l = 1, r = 2
+
+// l = 1 , r = 2
+
+// l = 1, r = 7
+// l = 
+            while (l < r) {
+                int sum = nums[i] + nums[l] + nums[r];
+// sum = -4 + -1 + 2 = -1 
+// s = -4 + 0 + 2 = -2
+// s = -4 + 1 + 2 = -1
+
+// at i = 1
+// s = -1 + -1 + 2(l = 2 , r =5)
+// s = -1 + 0 + 1(l = 3, r = 4)
+
+// at i = 2 ( l = 3, r = 5)
+// s = -1 + 0 + 2 = -1 --> l = 4
+// s = -1 + 1 + 2 = 2 --> r = 4
+
+// i = 3 ( l =4, r = 5)
+// s = 0 + 1 + 2 = 3 --> (r = 4)
+
+
+// s =  0 + 0 + 0 = 0
+//  [0, 0, 0, 0, 0, 1, 1, 2]
+//  0  1  2   3  4  5  6  7
+// s = 2(l --> 1, r = 7) > 0 --> r-- -->6
+// s = 0 (0, 1, 4)
+// s = 0 (0, 2, 3)
+                if (sum < 0) l++;
+                // l = 2 --> 3 --> 4 --
+                // l = 4
+                else if (sum > 0) r--;
+// jb sum 0 mil jae 
+                else {
+                    ans.add(Arrays.asList(nums[i], nums[l], nums[r]));
+            
+                    // -1,-1, 2
+                    // -1, 0, 1
+
+                    // (0,0,0)-->0, 1, 4
+                    l++; // 3 // 2 
+                    // l = 2
+                    r--; // 4 // 1
+                    // r = 3
+
+                    while (l < r && nums[l] == nums[l - 1]) l++;
+                    // 1 < 4 --> l --> 
+                     while (l < r && nums[r] == nums[r + 1]) r--;
+                }
+            }
+        }
+
+        return ans;
+    }
+}
+```
