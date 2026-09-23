@@ -1097,9 +1097,10 @@ class Solution {
 }
 ```
 
-# 28. Triplet Sum in Array
+# 28. Triplet Sum in Array((GFG) & (LC))
+
 ```java
-(GFG)
+
 class Solution {
     public boolean hasTripletSum(int nums[], int target) {
 
@@ -1213,7 +1214,10 @@ class Solution {
         // to false return karenge
     }
 }
-(LC)
+```
+# (LC)
+```java
+
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
 // TC --> O(n^2)
