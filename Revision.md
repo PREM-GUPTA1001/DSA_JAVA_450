@@ -1307,7 +1307,7 @@ class Solution {
 }
 ```
 
-# Trapping Rain Water
+# 29.Trapping Rain Water
 ```java
 class Solution {
 public int trap(int[] height) {
