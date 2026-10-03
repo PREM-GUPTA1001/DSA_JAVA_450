@@ -1446,3 +1446,36 @@ class Solution {
     }
 }
 ```
+
+# Smallest Subarray Sum Greater Than x
+```java
+class Solution {
+    public static int smallestSubWithSum(int x, int[] arr) {
+        // logic is 
+        int sum = 0;
+        int left = 0;
+        int ans = Integer.MAX_VALUE;
+    // n = 6 
+        for(int right = 0; right < arr.length; right++){
+            sum += arr[right];
+        // s = 1 + 4 + 45 + 6 = 56
+        // 56 >= 51
+            while(sum > x){
+                // 56 - 1 = 55 
+                ans = Math.min(ans, right - left + 1);
+                // ans = min(ans, 4)--> 4
+                // ans = min(ans, 3 - 1 + 1) --> min(ans, 3);
+                // ans = min(ans, 3 - 2 + 1) --> min(3, 2);
+                
+                sum -= arr[left];
+                // sum = 56 - 1 = 55;
+                left++;
+                // 1
+                // 
+            }
+        }
+        return ans == Integer.MAX_VALUE ? 0 : ans;
+    }
+}
+
+```
