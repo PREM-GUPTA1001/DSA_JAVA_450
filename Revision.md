@@ -1363,7 +1363,7 @@ public int trap(int[] height) {
 
 ```
 
-# 30 -> a).Chocolate Distribution Problem
+# 30) a.Chocolate Distribution Problem
 ```java
 class Solution {
     public int findMinDiff(int arr[], int m) {
